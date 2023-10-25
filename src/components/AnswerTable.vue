@@ -1,10 +1,8 @@
 <template>
   <div class="mainDiv">
     <Card>
-      <template #title> 
-        <slot name="card-title">
-          Votacion Activa 
-        </slot>
+      <template #title>
+        <slot name="card-title"> Votacion Activa </slot>
       </template>
       <template #content>
         <h3>{{ voteInfo.question }}</h3>
@@ -15,37 +13,50 @@
       </template>
     </Card>
     <div class="card">
-        <DataTable :value="results" tableStyle="min-width: 50rem">
-            <slot name="Table-Cols">
-              <Column field="id" header="Id"></Column>
-              <Column field="answer" header="Respuesta"></Column>
-              <Column field="count" header="Personas"></Column>
-              <Column field="porcent" header="Porcentaje"></Column>
-            </slot>
-        </DataTable>
+      <DataTable :value="results" tableStyle="min-width: 50rem">
+        <slot name="Table-Cols">
+          <Column field="id" header="Id"></Column>
+          <Column field="answer" header="Respuesta"></Column>
+          <Column field="count" header="Personas"></Column>
+          <Column field="porcent" header="Porcentaje"></Column>
+        </slot>
+      </DataTable>
     </div>
   </div>
 </template>
 
-<script setup>
-  import { ref, onMounted } from 'vue'
-  import { dataService }  from '../service/dataService';
-  
-  const voteInfo = ref('')
-  const results = ref()
+<script>
+import { ref, onMounted, reactive } from "vue";
+import { dataService } from "../service/dataService";
 
-  onMounted(() => {
-    voteInfo.value = dataService.getVoteInfo()
-    dataService.getresults().then((data) => results.value = data)
-  })
+// const voteInfo = ref("");
+// const results = ref();
+
+// const componentState = reactive({
+//   voteInfo: dataService.getVoteInfo(),
+//   results: dataService.getresults(),
+// });
+
+// onMounted(() => {
+//   voteInfo.value = dataService.getVoteInfo();
+//   dataService.getresults().then((data) => (results.value = data));
+// });
+
+export default {
+  data(){
+    return {
+      context {
+
+      }
+    }
+  }
+};
 </script>
 
 <style>
-
 .mainDiv {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-
 </style>

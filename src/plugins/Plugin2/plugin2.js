@@ -1,10 +1,13 @@
-import MyAnswerPluginComponent from './plugin2.vue';
+import MyAnswerPluginComponent from "./plugin2.vue";
 
 export default {
-    install:(api) => {
-       api.registerVoteViewComponentReplacement('AnswerTable', MyAnswerPluginComponent)
-    },
-    disable:(api) => {
-      delete api.replaceVoteViewComponents['AnswerTable']
-    }
-  }
+  install: (api) => {
+    api.registerVoteViewComponentReplacement(
+      "AnswerTable",
+      MyAnswerPluginComponent
+    );
+  },
+  disable: (api) => {
+    delete api.replaceVoteViewComponents["AnswerTable"];
+  },
+};

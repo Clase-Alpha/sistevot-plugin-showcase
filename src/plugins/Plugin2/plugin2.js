@@ -10,4 +10,7 @@ export default {
   disable: (api) => {
     delete api.replaceVoteViewComponents["AnswerTable"];
   },
+  applyContext: (context) => {
+    context.percentage = 50;
+  },
 };

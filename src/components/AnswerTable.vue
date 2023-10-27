@@ -41,16 +41,6 @@ import { dataService } from "../service/dataService";
 //   voteInfo.value = dataService.getVoteInfo();
 //   dataService.getresults().then((data) => (results.value = data));
 // });
-
-export default {
-  data(){
-    return {
-      context {
-
-      }
-    }
-  }
-};
 </script>
 
 <style>

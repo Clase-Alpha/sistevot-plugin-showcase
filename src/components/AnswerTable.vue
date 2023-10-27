@@ -5,7 +5,7 @@
         <slot name="card-title"> Votacion Activa </slot>
       </template>
       <template #content>
-        <h3>{{ context.voteInfo.question }}</h3>
+        <h3>{{ voteInfo.question }}</h3>
         <h4>Opción de Respuesta</h4>
         <h6 v-for="(value, index) in context.voteInfo.choices" :key="index">
           {{ value.id }}. {{ value.answer }}
@@ -26,7 +26,8 @@
 </template>
 
 <script>
-import { defineAsyncComponent, defineComponent, toRefs } from "vue";
+import { defineAsyncComponent, defineComponent, onMounted, toRefs } from "vue";
+import { dataService } from "../service/dataService.js";
 // const voteInfo = ref("");
 // const results = ref();
 
@@ -49,11 +50,15 @@ export default defineAsyncComponent({
     },
   },
   setup(props) {
-    console.log(props);
     const { context } = toRefs(props);
+    const voteInfo = ref({});
+    onMounted(() => {
+      voteInfo.value = ref(context.getVoteInfo());
+    });
+    console.log(props);
     console.log(context);
     return {
-      context,
+      voteInfo,
     };
   },
 });

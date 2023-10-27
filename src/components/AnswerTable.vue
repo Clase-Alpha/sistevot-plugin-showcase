@@ -5,15 +5,15 @@
         <slot name="card-title"> Votacion Activa </slot>
       </template>
       <template #content>
-        <h3>{{ voteInfo.question }}</h3>
+        <h3>{{ context.voteInfo.question }}</h3>
         <h4>Opción de Respuesta</h4>
-        <h6 v-for="(value, index) in voteInfo.choices" :key="index">
+        <h6 v-for="(value, index) in context.voteInfo.choices" :key="index">
           {{ value.id }}. {{ value.answer }}
         </h6>
       </template>
     </Card>
     <div class="card">
-      <DataTable :value="results" tableStyle="min-width: 50rem">
+      <DataTable :value="context.results" tableStyle="min-width: 50rem">
         <slot name="Table-Cols">
           <Column field="id" header="Id"></Column>
           <Column field="answer" header="Respuesta"></Column>
@@ -26,9 +26,7 @@
 </template>
 
 <script>
-import { ref, onMounted, reactive } from "vue";
-import { dataService } from "../service/dataService";
-
+import { defineAsyncComponent, defineComponent, toRefs } from "vue";
 // const voteInfo = ref("");
 // const results = ref();
 
@@ -41,6 +39,24 @@ import { dataService } from "../service/dataService";
 //   voteInfo.value = dataService.getVoteInfo();
 //   dataService.getresults().then((data) => (results.value = data));
 // });
+
+export default defineAsyncComponent({
+  name: "AnswerTable",
+  props: {
+    context: {
+      type: Object,
+      required: true,
+    },
+  },
+  setup(props) {
+    console.log(props);
+    const { context } = toRefs(props);
+    console.log(context);
+    return {
+      context,
+    };
+  },
+});
 </script>
 
 <style>

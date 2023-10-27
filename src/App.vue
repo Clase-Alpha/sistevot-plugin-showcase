@@ -1,4 +1,3 @@
-
 <template>
   <Suspense>
     <div class="main">
@@ -7,25 +6,22 @@
   </Suspense>
 </template>
 
-<script  setup>
-
-import AsyncApp from './AsyncApp.vue'
-
+<script setup>
+import AsyncApp from "./AsyncApp.vue";
 </script>
 
 <style>
-.main{
+.main {
   display: flex;
   gap: 10px;
 }
-.buttonGrp{
+.buttonGrp {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
-button{
+button {
   color: white;
 }
 </style>
